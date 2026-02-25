@@ -20,7 +20,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Bloom",
+  title: "Carizzmaw",
   description: "Your Dating Profile Optimizer",
 };
 

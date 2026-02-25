@@ -1,5 +1,6 @@
 'use client';
 import { m, fadeUp, staggerContainer, scaleIn, viewportOnce } from './animatedWrapper';
+import { Check, Star } from 'lucide-react';
 
 const plans = [
   {
@@ -57,7 +58,7 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <section className="section" id="pricing" style={{ padding: 'var(--space-20) var(--space-6)' }}>
+    <section className="section section-padding-inline" id="pricing" style={{ padding: 'var(--space-20) var(--space-6)' }}>
       <div className="container">
 
         <m.div
@@ -65,7 +66,7 @@ export default function Pricing() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          style={{ textAlign: 'center', marginBottom: 'var(--space-14)' }}
+          style={{ textAlign: 'center', marginBottom: 'clamp(var(--space-8), 6vw, var(--space-14))' }}
         >
           <span className="text-label" style={{ display: 'block', marginBottom: 'var(--space-3)' }}>Pricing</span>
           <h2 className="heading-1" style={{ maxWidth: '560px', margin: '0 auto var(--space-4)' }}>
@@ -83,7 +84,7 @@ export default function Pricing() {
           viewport={viewportOnce}
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
             gap: 'var(--space-4)',
             maxWidth: '960px',
             margin: '0 auto',
@@ -94,7 +95,7 @@ export default function Pricing() {
             <m.div
               key={plan.name}
               variants={scaleIn}
-              className={plan.card}
+              className={plan.badge ? `${plan.card} pricing-card-featured` : plan.card}
               style={{ 
                 display: 'flex', 
                 flexDirection: 'column', 
@@ -105,7 +106,9 @@ export default function Pricing() {
             >
               {plan.badge && (
                 <div style={{ position: 'absolute', top: '-14px', left: '50%', transform: 'translateX(-50%)' }}>
-                  <span className="badge badge-rose" style={{ whiteSpace: 'nowrap' }}>⭐ {plan.badge}</span>
+                  <span className="badge badge-rose" style={{ whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                    <Star size={12} fill="currentColor" strokeWidth={1.5} aria-hidden /> {plan.badge}
+                  </span>
                 </div>
               )}
 
@@ -137,7 +140,7 @@ export default function Pricing() {
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
                 {plan.perks.map((perk) => (
                   <li key={perk} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)', fontSize: 'var(--text-sm)', color: 'var(--text-secondary)' }}>
-                    <span style={{ color: 'var(--accent-rose)', fontWeight: 'var(--font-bold)', flexShrink: 0 }}>✓</span>
+                    <Check size={16} style={{ color: 'var(--accent-rose)', fontWeight: 'var(--font-bold)', flexShrink: 0 }} strokeWidth={2.5} aria-hidden />
                     {perk}
                   </li>
                 ))}

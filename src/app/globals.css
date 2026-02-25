@@ -322,6 +322,12 @@
      letter-spacing: var(--tracking-tight);
      line-height:    var(--leading-tight);
    }
+
+   @media (max-width: 640px) {
+     .heading-1 {
+       font-size: clamp(var(--text-2xl), 6vw, var(--text-4xl));
+     }
+   }
    
    .heading-2 {
      font-size:      var(--text-2xl);
@@ -750,17 +756,169 @@
    
    /* Hero two-column → single column on mobile */
 .hero-grid {
+  display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 480px);
+  gap: var(--space-16);
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
 }
 
 @media (max-width: 860px) {
   .hero-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+    gap: var(--space-10);
     text-align: center;
   }
   .hero-grid > div:first-child {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
   }
+  .hero-grid > div:first-child p,
+  .hero-grid > div:first-child h1 {
+    text-align: center;
+  }
+  .hero-grid .hero-buttons {
+    justify-content: center;
+  }
+  .hero-grid .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-grid {
+    gap: var(--space-6);
+  }
+  .hero-phone-wrap {
+    max-width: min(420px, 92vw);
+  }
+  .hero-grid .hero-subtitle {
+    max-width: 100%;
+  }
+  .hero-buttons .btn-primary,
+  .hero-buttons .btn-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--text-base);
+  }
+}
+
+/* Pain section: stack text + image on small screens */
+@media (max-width: 860px) {
+  .pain-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-8) !important;
+    margin-bottom: var(--space-10) !important;
+  }
+  .pain-grid .pain-grid-image {
+    order: -1;
+    max-width: 100%;
+  }
+}
+
+/* How it works: stack steps | character on small screens */
+@media (max-width: 860px) {
+  .hiw-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-10) !important;
+    margin-bottom: var(--space-10) !important;
+  }
+  .hiw-character-column {
+    min-height: 420px;
+  }
+}
+
+/* Before/After banner: stack on mobile */
+@media (max-width: 640px) {
+  .hiw-before-after {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto auto !important;
+    height: auto !important;
+    min-height: 320px !important;
+  }
+  .hiw-before-after > div {
+    min-height: 160px !important;
+  }
+}
+
+/* Container & section padding on small screens */
+@media (max-width: 640px) {
+  .container,
+  .container-sm,
+  .container-md {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+  .section {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+  .section-padding-inline {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+}
+
+/* Features grid: allow narrower cards on small screens */
+@media (max-width: 480px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Pricing: remove scale on Pro card when stacked (override inline) */
+@media (max-width: 640px) {
+  .pricing-card-featured {
+    transform: none !important;
+  }
+}
+
+/* Hero floating badges: hide when stacked to avoid overflow */
+@media (max-width: 860px) {
+  .hero-floating-badges .card-rose,
+  .hero-floating-badges .card-lavender {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .hiw-step-row {
+    grid-template-columns: 56px 1fr !important;
+    gap: var(--space-4) !important;
+    padding: var(--space-4) var(--space-4) !important;
+  }
+}
+
+/* How it works floating chips: hide on small to avoid overlap */
+@media (max-width: 860px) {
+  .hiw-floating-chips > *:nth-child(n+4) {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .hiw-floating-chips > * {
+    display: none;
+  }
+}
+
+/* Flip card: tap to flip on touch devices, min height responsive */
+@media (max-width: 640px) {
+  .flip-card-wrapper {
+    min-height: 200px;
+    height: auto;
+  }
+  .flip-card-wrapper > div > div {
+    min-height: 200px;
+  }
+}
+
+@media (pointer: coarse) {
+  .flip-hint-hover { display: none !important; }
+  .flip-hint-tap { display: inline !important; }
 }

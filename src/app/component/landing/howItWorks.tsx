@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { m, fadeUp, staggerContainer, scaleIn, viewportOnce } from './animatedWrapper';
+import { Sparkles, MessageCircle, Flame, Zap } from 'lucide-react';
 
 const steps = [
   { number: '01', color: 'var(--accent-rose)',     glow: 'var(--glow-rose)',     title: 'Upload your profile',    desc: 'Drop in your photos and bio. No login to dating apps required. Takes 60 seconds.' },
@@ -19,7 +20,7 @@ const floatingStats = [
     content: (
       <div>
         <div style={{ fontSize: '11px', color: 'var(--text-muted)', marginBottom: '2px', letterSpacing: '0.08em', textTransform: 'uppercase' }}>This Week</div>
-        <div style={{ fontSize: '18px', fontWeight: 700, color: 'var(--accent-teal)' }}>+11 Matches 🎉</div>
+        <div style={{ fontSize: '18px', fontWeight: 700, color: 'var(--accent-teal)', display: 'flex', alignItems: 'center', gap: '6px' }}>+11 Matches <Sparkles size={18} strokeWidth={2} aria-hidden /></div>
       </div>
     ),
   },
@@ -48,9 +49,9 @@ const floatingStats = [
     duration: 4.1,
     content: (
       <div style={{ maxWidth: '160px' }}>
-        <div style={{ fontSize: '11px', color: 'var(--accent-rose)', fontWeight: 600, marginBottom: '4px' }}>💬 AI Opener</div>
+        <div style={{ fontSize: '11px', color: 'var(--accent-rose)', fontWeight: 600, marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '4px' }}><MessageCircle size={12} strokeWidth={2} aria-hidden /> AI Opener</div>
         <div style={{ fontSize: '12px', color: 'var(--text-secondary)', lineHeight: 1.5, fontStyle: 'italic' }}>
-          "Your photo in Rome — was that the Trastevere district?"
+          "From Nanami's Cool Cousin"
         </div>
       </div>
     ),
@@ -73,8 +74,11 @@ const floatingStats = [
             borderRadius: '999px',
             color: 'var(--accent-lavender-light)',
             fontWeight: 600,
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '4px',
           }}>
-            🔥 TOP 5%
+            <Flame size={10} strokeWidth={2.5} aria-hidden /> TOP 5%
           </div>
         </div>
       </div>
@@ -87,7 +91,7 @@ const floatingStats = [
     duration: 3.0,
     content: (
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <div style={{ fontSize: '22px' }}>⚡</div>
+        <div style={{ display: 'flex', alignItems: 'center', color: 'var(--accent-rose)' }}><Zap size={22} strokeWidth={2} aria-hidden /></div>
         <div>
           <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--accent-rose)' }}>Rizz Level</div>
           <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Dangerous</div>
@@ -148,7 +152,7 @@ function FloatingChip({
 // ── Main export ──────────────────────────────────────────
 export default function HowItWorks() {
   return (
-    <section className="section" id="how-it-works" style={{ padding: 'var(--space-20) var(--space-6)' }}>
+    <section className="section section-padding-inline" id="how-it-works" style={{ padding: 'var(--space-20) var(--space-6)' }}>
       <div className="container">
 
         <m.div
@@ -190,6 +194,7 @@ export default function HowItWorks() {
                   padding: 'var(--space-6)',
                   boxShadow: 'var(--shadow-md)',
                 }}
+                className="hiw-step-row"
                 whileHover={{ y: -2, transition: { duration: 0.2 } }}
               >
                 <div style={{
@@ -217,6 +222,7 @@ export default function HowItWorks() {
 
           {/* RIGHT — Mr. Rizzler character */}
           <m.div
+            className="hiw-character-column"
             initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={viewportOnce}
@@ -318,9 +324,11 @@ export default function HowItWorks() {
             </m.div>
 
             {/* Floating stat chips */}
-            {floatingStats.map(stat => (
-              <FloatingChip key={stat.id} stat={stat} />
-            ))}
+            <div className="hiw-floating-chips" style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 10 }}>
+              {floatingStats.map(stat => (
+                <FloatingChip key={stat.id} stat={stat} />
+              ))}
+            </div>
 
           </m.div>
         </div>
@@ -336,7 +344,7 @@ export default function HowItWorks() {
             border: 'var(--aurora-border)',
           }}
         >
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', height: '280px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', height: '280px' }} className="hiw-before-after">
 
             {/* Before */}
             <div style={{ position: 'relative', overflow: 'hidden' }}>
@@ -388,8 +396,11 @@ export default function HowItWorks() {
             fontSize: 'var(--text-sm)',
             fontWeight: 'var(--font-semibold)',
             whiteSpace: 'nowrap',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
           }}>
-            ✦ After Bloom
+            <Sparkles size={14} strokeWidth={2} aria-hidden /> After Carizzmaw
           </div>
         </m.div>
 

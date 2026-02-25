@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { m, fadeUp, staggerContainer, scaleIn, viewportOnce } from './animatedWrapper';
+import { Sparkles } from 'lucide-react';
 
 const stats = [
   { value: '64%', label: 'of men feel insecure from\nzero matches' },
@@ -16,27 +17,18 @@ export default function Hero() {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: 'var(--space-20) var(--space-6)',
+      padding: 'clamp(var(--space-6), 5vw, var(--space-20)) clamp(var(--space-4), 4vw, var(--space-6))',
       position: 'relative',
     }}>
 
       {/* ── Two-column layout on wide screens ── */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'minmax(0,1fr) minmax(0,480px)',
-        gap: 'var(--space-16)',
-        alignItems: 'center',
-        width: '100%',
-        maxWidth: '1100px',
-      }}
-        className="hero-grid"   // add responsive CSS below
-      >
+      <div className="hero-grid">
 
         {/* Left — text */}
         <div>
           <m.div variants={fadeUp} initial="hidden" animate="visible" style={{ marginBottom: 'var(--space-6)' }}>
-            <span className="badge badge-rose" style={{ fontSize: 'var(--text-sm)', padding: 'var(--space-2) var(--space-4)' }}>
-              ✦ AI-Powered Dating Profile Optimizer
+            <span className="badge badge-rose" style={{ fontSize: 'var(--text-sm)', padding: 'var(--space-2) var(--space-4)', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+              <Sparkles size={14} strokeWidth={2} aria-hidden /> AI-Powered Dating Profile Optimizer
             </span>
           </m.div>
 
@@ -55,14 +47,16 @@ export default function Hero() {
             <br />We'll show you exactly why.
           </m.h1>
 
-          <m.p variants={fadeUp} initial="hidden" animate="visible"
+          <m.div variants={fadeUp} initial="hidden" animate="visible"
             style={{ fontSize: 'var(--text-lg)', color: 'var(--text-secondary)', lineHeight: 'var(--leading-relaxed)', marginBottom: 'var(--space-8)', maxWidth: '480px' }}
+            className="hero-subtitle"
           >
             It's not you. It's your photos, bio, and platform strategy.
             Our AI rebuilds your dating profile like a product launch.
-          </m.p>
+          </m.div>
 
           <m.div variants={staggerContainer} initial="hidden" animate="visible"
+            className="hero-buttons"
             style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap', marginBottom: 'var(--space-6)' }}
           >
             <m.button variants={scaleIn} className="btn-primary" style={{ fontSize: 'var(--text-lg)', padding: 'var(--space-4) var(--space-10)' }}>
@@ -82,6 +76,7 @@ export default function Hero() {
 
         {/* Right — phone image with glow ring */}
         <m.div
+          className="hero-floating-badges"
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.4, 0, 0.2, 1] as const, delay: 0.2 } }}
           style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}
@@ -99,15 +94,11 @@ export default function Hero() {
           <div style={{
             position: 'relative',
             zIndex: 1,
-            borderRadius: 'var(--radius-xl)',
-            overflow: 'hidden',
-            boxShadow: 'var(--glow-strong)',
-            border: 'var(--aurora-border)',
-            maxWidth: '340px',
+            maxWidth: '420px',
             width: '100%',
-          }}>
+          }} className="hero-phone-wrap">
             <Image
-              src="/landingPage/mobile_hero.png"
+              src="/landingPage/heroineJi.png"
               alt="Dating app profile UI"
               width={340}
               height={520}
@@ -150,7 +141,9 @@ export default function Hero() {
             }}
           >
             <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)' }}>This week</div>
-            <div style={{ fontSize: 'var(--text-lg)', fontWeight: 'var(--font-bold)', color: 'var(--accent-lavender-light)' }}>+11 Matches 🎉</div>
+            <div style={{ fontSize: 'var(--text-lg)', fontWeight: 'var(--font-bold)', color: 'var(--accent-lavender-light)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              +11 Matches <Sparkles size={18} strokeWidth={2} aria-hidden />
+            </div>
           </m.div>
         </m.div>
       </div>
@@ -158,11 +151,11 @@ export default function Hero() {
       {/* Stats Row */}
       <m.div
         variants={staggerContainer} initial="hidden" whileInView="visible" viewport={viewportOnce}
-        style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap', justifyContent: 'center', marginTop: 'var(--space-20)', width: '100%', maxWidth: '860px' }}
+        style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap', justifyContent: 'center', marginTop: 'clamp(var(--space-8), 8vw, var(--space-20))', width: '100%', maxWidth: '860px' }}
       >
         {stats.map((s) => (
           <m.div key={s.value} variants={scaleIn} className="card-rose"
-            style={{ minWidth: '170px', padding: 'var(--space-6)', textAlign: 'center', flex: '1 1 160px' }}
+            style={{ minWidth: 'min(100%, 170px)', padding: 'var(--space-4) var(--space-6)', textAlign: 'center', flex: '1 1 140px' }}
           >
             <div style={{ fontSize: 'var(--text-4xl)', fontWeight: 'var(--font-bold)', background: 'var(--gradient-brand-text)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: 'var(--space-2)' }}>
               {s.value}

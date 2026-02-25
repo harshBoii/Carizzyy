@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { m, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+import { Sparkles, X } from 'lucide-react';
 
 const NAV_LINKS = [
   { label: 'How It Works', href: '#how-it-works' },
@@ -35,7 +36,7 @@ function AnnouncementBar({ onDismiss }: { onDismiss: () => void }) {
       className="fixed top-0 left-0 right-0 z-[500] overflow-hidden"
     >
       <div className="
-        relative flex items-center justify-center gap-3 px-10 py-2
+        relative flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 px-4 sm:px-10 py-2
         bg-gradient-to-r
           from-[rgba(242,112,156,0.10)]
           via-[rgba(159,122,234,0.10)]
@@ -50,9 +51,9 @@ function AnnouncementBar({ onDismiss }: { onDismiss: () => void }) {
           rounded-full text-[var(--accent-rose)]
           text-[10px] font-semibold tracking-widest uppercase
         ">
-          ✦ New
+          <Sparkles size={10} strokeWidth={2} aria-hidden /> New
         </span>
-        <span className="text-[var(--text-secondary)] text-sm">
+        <span className="text-[var(--text-secondary)] text-xs sm:text-sm text-center sm:text-left">
           Roast Mode is live — get a brutally honest AI critique of your profile.
         </span>
         <a
@@ -75,7 +76,7 @@ function AnnouncementBar({ onDismiss }: { onDismiss: () => void }) {
             transition-all duration-150 text-xs leading-none
           "
         >
-          ✕
+          <X size={14} strokeWidth={2} aria-hidden />
         </button>
       </div>
     </m.div>
@@ -189,7 +190,7 @@ export default function Header() {
               "
             >
               <span className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent" />
-              <span className="relative text-white text-sm font-bold select-none">✦</span>
+              <Sparkles size={14} strokeWidth={2} className="relative text-white" aria-hidden />
             </m.div>
             <div className="flex flex-col leading-none gap-[3px]">
               <span className="
@@ -197,7 +198,7 @@ export default function Header() {
                 bg-gradient-to-r from-[var(--accent-rose)] to-[var(--accent-lavender-light)]
                 bg-clip-text text-transparent
               ">
-                Bloom
+                Carizzmaw
               </span>
               <span className="text-[9px] tracking-[0.15em] uppercase text-[var(--text-muted)] font-medium">
                 Profile AI
