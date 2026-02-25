@@ -22,8 +22,12 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Carizzmaw",
   description: "Your Dating Profile Optimizer",
+  icons: {
+    icon: [
+      { url: '/CarizzmawLogo.png', sizes: '64x64', type: 'image/png' },
+    ],
+  },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
